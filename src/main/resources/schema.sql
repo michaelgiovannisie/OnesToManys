@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS travel_plans (
+CREATE TABLE IF NOT EXISTS trips (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     start_date DATE,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS travel_plans (
 
 CREATE TABLE IF NOT EXISTS destinations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    travel_plan_id INTEGER NOT NULL,
+    trip_id INTEGER NOT NULL,
     city TEXT NOT NULL,
     country TEXT NOT NULL,
     arrival_date DATE,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS destinations (
     budget double,
     status TEXT,
     notes TEXT,
-    FOREIGN KEY (travel_plan_id) REFERENCES travel_plans(id)
+    FOREIGN KEY (trip_id) REFERENCES trips(id)
 );
 
 CREATE TABLE IF NOT EXISTS places (
