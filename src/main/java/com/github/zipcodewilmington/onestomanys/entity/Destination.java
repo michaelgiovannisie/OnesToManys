@@ -1,4 +1,4 @@
-package main.java.com.github.zipcodewilmington.onestomanys.entity;
+package com.github.zipcodewilmington.onestomanys.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,10 +15,9 @@ import java.util.List;
 @Entity
 @Table(name = "destinations")
 public class Destination {
-@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int tripId;
     private String city;
     private String country;
     private LocalDate arrivalDate;
@@ -24,7 +25,9 @@ public class Destination {
     private double budget;
     private String status;
     private String notes;
-
+    @ManyToOne()
+    @JoinColumn(name = "trip_id")
+    private Trip trip;
     @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
     private List<Place> places;
 
@@ -32,9 +35,9 @@ public class Destination {
         
     }
 
-    public Destination(int id, int tripId, String city, String country, LocalDate arrivalDate, LocalDate departureDate, double budget, String status, String notes) {
+    public Destination(int id, Trip trip, String city, String country, LocalDate arrivalDate, LocalDate departureDate, double budget, String status, String notes) {
         this.id = id;
-        this.tripId = tripId;
+        this.trip = trip;
         this.city = city;
         this.country = country;
         this.arrivalDate = arrivalDate;
@@ -48,8 +51,8 @@ public class Destination {
         return this.id;
     }
 
-    public int getTripId() {
-        return this.tripId;
+    public Trip getTrip() {
+        return this.trip;
     }
 
     public String getCity() {
@@ -86,9 +89,9 @@ public class Destination {
         };
     }
 
-    public void setTripId(int tripId){
-        if(tripId > 0) {
-            this.tripId = tripId;
+    public void setTrip(Trip trip){
+        if(trip != null) {
+            this.trip = trip;
         };
     }
 
