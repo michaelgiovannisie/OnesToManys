@@ -1,5 +1,8 @@
 package com.github.zipcodewilmington.onestomanys.entity;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,8 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "trips")
@@ -68,6 +69,10 @@ public class Trip {
         return this.notes;
     }
 
+    public List<Destination> getDestinations() {
+        return this.destinations;
+    }
+
     public void setId(int id){
         if(id > 0) {
             this.id = id;
@@ -107,6 +112,12 @@ public class Trip {
     public void setNotes(String notes) {
         if(!notes.isEmpty()) {
             this.notes = notes;
+        };
+    }
+
+    public void setDestinations(List<Destination> destinations) {
+        if(!destinations.isEmpty()) {
+            this.destinations = destinations;
         };
     }
 }
