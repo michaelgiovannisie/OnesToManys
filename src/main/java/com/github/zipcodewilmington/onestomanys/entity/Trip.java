@@ -3,6 +3,8 @@ package com.github.zipcodewilmington.onestomanys.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +27,7 @@ public class Trip {
     private String notes;
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Destination> destinations;
 
     public Trip() {
