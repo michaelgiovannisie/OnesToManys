@@ -2,6 +2,8 @@ package com.github.zipcodewilmington.onestomanys.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,8 @@ public class Place {
     private double budget;
     private String status;
     private String notes;
+
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "destination_id")
     private Destination destination;

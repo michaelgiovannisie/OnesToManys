@@ -115,3 +115,7 @@ INSERT INTO places (id, destination_id, name, category, arrival_time, departure_
 INSERT INTO places (id, destination_id, name, category, arrival_time, departure_time, budget, status, notes) VALUES (48, 48, 'Cathedrale Notre Dame de Strasbourg', 'Landmark', '2029-07-26 10:00:00', '2029-07-26 18:00:00', 500, 'Planning', 'Find some girls and say "Voulez-vous coucher avec moi?".');
 INSERT INTO places (id, destination_id, name, category, arrival_time, departure_time, budget, status, notes) VALUES (49, 49, 'Le vieux port', 'Landmark', '2029-07-27 10:00:00', '2029-07-27 18:00:00', 500, 'Planning', 'Vitamin Sea.');
 INSERT INTO places (id, destination_id, name, category, arrival_time, departure_time, budget, status, notes) VALUES (50, 50, 'Place de la bourse', 'Landmark', '2029-07-28 10:00:00', '2029-07-28 18:00:00', 500, 'Planning', 'Wine.');
+
+ALTER TABLE trips ALTER COLUMN id RESTART WITH 100;
+ALTER TABLE destinations ALTER COLUMN id RESTART WITH 100;
+ALTER TABLE places ALTER COLUMN id RESTART WITH 100;

@@ -1,4 +1,6 @@
 /Users/michael/Projects/OnesToManys/src/main/java/com/github/zipcodewilmington/onestomanys/OnestomanysApplication.java
+/Users/michael/Projects/OnesToManys/src/main/java/com/github/zipcodewilmington/onestomanys/controller/DestinationController.java
+/Users/michael/Projects/OnesToManys/src/main/java/com/github/zipcodewilmington/onestomanys/controller/PlaceController.java
 /Users/michael/Projects/OnesToManys/src/main/java/com/github/zipcodewilmington/onestomanys/controller/TripController.java
 /Users/michael/Projects/OnesToManys/src/main/java/com/github/zipcodewilmington/onestomanys/entity/Destination.java
 /Users/michael/Projects/OnesToManys/src/main/java/com/github/zipcodewilmington/onestomanys/entity/Place.java

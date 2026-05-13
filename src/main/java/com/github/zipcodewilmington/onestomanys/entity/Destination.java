@@ -88,6 +88,10 @@ public class Destination {
         return this.notes;
     }
 
+    public List<Place> getPlaces() {
+        return this.places;
+    }
+
     public void setId(int id){
         if(id > 0) {
             this.id = id;
@@ -139,6 +143,12 @@ public class Destination {
     public void setNotes(String notes) {
         if(!notes.isEmpty()) {
             this.notes = notes;
+        };
+    }
+
+    public void setPlaces(List<Place> places) {
+        if(!places.isEmpty()) {
+            this.places = places;
         };
     }
 }
