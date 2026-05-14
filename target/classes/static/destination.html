@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Detail</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="index.html">← Back to Destinations</a>
+    <h1 id="destination-title"></h1>
+    <div id="destination-detail"></div>
+    <h2>Places</h2>
+    <button onclick="togglePlaceForm()">
+    Create Place
+</button>
+
+<form id="place-form" style="display:none;">
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="text" id="category" placeholder="Category" required>
+    <input type="number" id="place-budget" placeholder="Budget" required>
+    <input type="text" id="place-status" placeholder="Status" required>
+    <input type="datetime-local" id="arrivalTime" required>
+    <input type="datetime-local" id="departureTime" required>
+    <textarea id="place-notes" placeholder="Place Notes"></textarea>
+    <button type="submit">Add Place</button>
+</form>
+    <div id="place-list"></div>
+    <script src="destination.js"></script>
+</body>
+</html>

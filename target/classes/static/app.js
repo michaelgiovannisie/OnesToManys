@@ -23,7 +23,11 @@ function renderTrips(trips) {
         const div = document.createElement("div");
         div.classList.add("trip-card");
         div.innerHTML = `
-            <h2>${trip.title}</h2>
+            <h2>
+                <a href="trip.html?id=${trip.id}">
+                    ${trip.title}
+                </a>
+            </h2>
             <p><strong>Status:</strong> ${trip.status}</p>
             <p><strong>Budget:</strong> $${trip.budget}</p>
             <p><strong>Start Date:</strong> ${trip.startDate}</p>
