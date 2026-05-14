@@ -2,15 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1.0">
-    <title>Michael's Trip</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael's Trip Memories</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>Trip Memories</h1>
-    <div id="trip-list"></div>
+    <div class="container">
+        <h1>Trip Memories</h1>
+        <button onclick="toggleCreateForm()">
+            Create Trip
+        </button>
+        <form id="trip-form" style="display: none;">
+            <input
+                type="text"
+                id="title"
+                placeholder="Trip Title"
+                required
+            >
+            <input
+                type="number"
+                id="budget"
+                placeholder="Budget"
+                required
+            >
+            <input
+                type="date"
+                id="startDate"
+                required
+            >
+            <input
+                type="date"
+                id="endDate"
+                required
+            >
+            <input
+                type="text"
+                id="status"
+                placeholder="Status"
+                required
+            >
+            <textarea
+                id="notes"
+                placeholder="Trip Notes"
+            ></textarea>
+            <button type="submit">
+                Add Trip
+            </button>
+        </form>
+        <div id="trip-list"></div>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
