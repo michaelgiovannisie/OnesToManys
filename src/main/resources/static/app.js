@@ -3,25 +3,19 @@ console.log("JS loaded");
 const tripList = document.getElementById("trip-list");
 const tripForm = document.getElementById("trip-form");
 
-let currentEditId = null;
-
 function loadTrips() {
-
     fetch("/api/trips")
         .then(response => response.json())
         .then(trips => {
-
             renderTrips(trips);
-
         });
-
 }
 
 function renderTrips(trips) {
     tripList.innerHTML = "";
     trips.forEach(trip => {
         const div = document.createElement("div");
-        div.classList.add("trip-card");
+        div.classList.add("card", "p-3", "mb-3", "shadow-sm");
         div.innerHTML = `
             <h2>
                 <a href="trip.html?id=${trip.id}">
@@ -33,24 +27,24 @@ function renderTrips(trips) {
             <p><strong>Start Date:</strong> ${trip.startDate}</p>
             <p><strong>End Date:</strong> ${trip.endDate}</p>
             <p><strong>Notes:</strong> ${trip.notes || ""}</p>
-            <button onclick="showEditForm(${trip.id})">
+            <button class="btn btn-warning btn-sm" onclick="showEditForm(${trip.id})">
                 Edit
             </button>
-            <button onclick="deleteTrip(${trip.id})">
+            <button class="btn btn-danger btn-sm" onclick="deleteTrip(${trip.id})">
                 Delete
             </button>
             <div id="edit-form-${trip.id}" style="display:none;">
                 <h3>Edit Trip</h3>
-                <input type="text" id="edit-title-${trip.id}" value="${trip.title}">
-                <input type="number" id="edit-budget-${trip.id}" value="${trip.budget}">
-                <input type="text" id="edit-status-${trip.id}" value="${trip.status}">
-                <input type="date" id="edit-startDate-${trip.id}" value="${trip.startDate}">
-                <input type="date" id="edit-endDate-${trip.id}" value="${trip.endDate}">
-                <textarea id="edit-notes-${trip.id}">${trip.notes || ""}</textarea>
-                <button onclick="saveTripEdit(${trip.id})">
+                <input class="form-control mb-2" type="text" id="edit-title-${trip.id}" value="${trip.title}">
+                <input class="form-control mb-2" type="number" id="edit-budget-${trip.id}" value="${trip.budget}">
+                <input class="form-control mb-2" type="text" id="edit-status-${trip.id}" value="${trip.status}">
+                <input class="form-control mb-2" type="date" id="edit-startDate-${trip.id}" value="${trip.startDate}">
+                <input class="form-control mb-2" type="date" id="edit-endDate-${trip.id}" value="${trip.endDate}">
+                <textarea class="form-control mb-2" id="edit-notes-${trip.id}">${trip.notes || ""}</textarea>
+                <button class="btn btn-primary btn-sm me-2" onclick="saveTripEdit(${trip.id})">
                     Save
                 </button>
-                <button onclick="hideEditForm(${trip.id})">
+                <button class="btn btn-secondary btn-sm" onclick="hideEditForm(${trip.id})">
                     Cancel
                 </button>
             </div>

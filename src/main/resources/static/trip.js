@@ -28,7 +28,11 @@ function loadDestinations() {
             destinations.forEach(destination => {
                 const div = document.createElement("div");
                 div.innerHTML = `
-                    <h3>${destination.city}, ${destination.country}</h3>
+                    <h3>
+                        <a href="destination.html?id=${destination.id}">
+                            ${destination.city}, ${destination.country}
+                        </a>
+                    </h3>
                     <p><strong>Status:</strong> ${destination.status}</p>
                     <p><strong>Budget:</strong> $${destination.budget}</p>
                     <p><strong>Arrival:</strong> ${destination.arrivalDate}</p>
