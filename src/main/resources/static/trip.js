@@ -11,11 +11,13 @@ function loadTrip() {
         .then(trip => {
             tripTitle.textContent = trip.title;
             tripDetail.innerHTML = `
+                <div class="card p-3 mb-4 shadow-sm">
                 <p><strong>Status:</strong> ${trip.status}</p>
                 <p><strong>Budget:</strong> $${trip.budget}</p>
                 <p><strong>Start Date:</strong> ${trip.startDate}</p>
                 <p><strong>End Date:</strong> ${trip.endDate}</p>
                 <p><strong>Notes:</strong> ${trip.notes || ""}</p>
+                </div>
             `;
         });
 }
@@ -27,6 +29,7 @@ function loadDestinations() {
             destinationList.innerHTML = "";
             destinations.forEach(destination => {
                 const div = document.createElement("div");
+                div.classList.add("card", "p-3", "mb-3", "shadow-sm");
                 div.innerHTML = `
                     <h3>
                         <a href="destination.html?id=${destination.id}">
@@ -38,25 +41,25 @@ function loadDestinations() {
                     <p><strong>Arrival:</strong> ${destination.arrivalDate}</p>
                     <p><strong>Departure:</strong> ${destination.departureDate}</p>
                     <p><strong>Notes:</strong> ${destination.notes || ""}</p>
-                    <button onclick="showDestinationEditForm(${destination.id})">
+                    <button class="btn btn-warning btn-sm" onclick="showDestinationEditForm(${destination.id})">
                         Edit
                     </button>
-                    <button onclick="deleteDestination(${destination.id})">
+                    <button class="btn btn-danger btn-sm" onclick="deleteDestination(${destination.id})">
                         Delete
                     </button>
                     <div id="destination-edit-form-${destination.id}" style="display:none;">
                         <h4>Edit Destination</h4>
-                        <input type="text" id="edit-city-${destination.id}" value="${destination.city}">
-                        <input type="text" id="edit-country-${destination.id}" value="${destination.country}">
-                        <input type="number" id="edit-destination-budget-${destination.id}" value="${destination.budget}">
-                        <input type="text" id="edit-destination-status-${destination.id}" value="${destination.status}">
-                        <input type="date" id="edit-arrivalDate-${destination.id}" value="${destination.arrivalDate}">
-                        <input type="date" id="edit-departureDate-${destination.id}" value="${destination.departureDate}">
-                        <textarea id="edit-destination-notes-${destination.id}">${destination.notes || ""}</textarea>
-                        <button onclick="saveDestinationEdit(${destination.id})">
+                        <input class="form-control mb-2" type="text" id="edit-city-${destination.id}" value="${destination.city}">
+                        <input class="form-control mb-2" type="text" id="edit-country-${destination.id}" value="${destination.country}">
+                        <input class="form-control mb-2" type="number" id="edit-destination-budget-${destination.id}" value="${destination.budget}">
+                        <input class="form-control mb-2" type="text" id="edit-destination-status-${destination.id}" value="${destination.status}">
+                        <input class="form-control mb-2" type="date" id="edit-arrivalDate-${destination.id}" value="${destination.arrivalDate}">
+                        <input class="form-control mb-2" type="date" id="edit-departureDate-${destination.id}" value="${destination.departureDate}">
+                        <textarea class="form-control mb-2" id="edit-destination-notes-${destination.id}">${destination.notes || ""}</textarea>
+                        <button class="btn btn-primary btn-sm me-2" onclick="saveDestinationEdit(${destination.id})">
                             Save
                         </button>
-                        <button onclick="hideDestinationEditForm(${destination.id})">
+                        <button class="btn btn-secondary btn-sm" onclick="hideDestinationEditForm(${destination.id})">
                             Cancel
                         </button>
                     </div>
