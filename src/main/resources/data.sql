@@ -1,3 +1,4 @@
+TRUNCATE TABLE places, destinations, trips RESTART IDENTITY CASCADE;
 -- travel_plans
 INSERT INTO trips (id, title, start_date, end_date, budget, status, notes) VALUES (1, 'First NYC trip', '2021-07-20', '2021-07-20', 400, 'Done', 'Visited some famous landmarks.');
 INSERT INTO trips (id, title, start_date, end_date, budget, status, notes) VALUES (2, 'Visiting Ivan', '2022-11-10', '2022-11-24', 2000, 'Done', 'Nice to see my old friend.');
