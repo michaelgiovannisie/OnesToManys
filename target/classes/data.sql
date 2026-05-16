@@ -1,4 +1,3 @@
-TRUNCATE TABLE places, destinations, trips RESTART IDENTITY CASCADE;
 -- travel_plans
 INSERT INTO trips (id, title, start_date, end_date, budget, status, notes) VALUES (1, 'First NYC trip', '2021-07-20', '2021-07-20', 400, 'Done', 'Visited some famous landmarks.');
 INSERT INTO trips (id, title, start_date, end_date, budget, status, notes) VALUES (2, 'Visiting Ivan', '2022-11-10', '2022-11-24', 2000, 'Done', 'Nice to see my old friend.');
@@ -116,3 +115,7 @@ INSERT INTO places (id, destination_id, name, category, arrival_time, departure_
 INSERT INTO places (id, destination_id, name, category, arrival_time, departure_time, budget, status, notes) VALUES (48, 48, 'Cathedrale Notre Dame de Strasbourg', 'Landmark', '2029-07-26 10:00:00', '2029-07-26 18:00:00', 500, 'Planning', 'Find some girls and say "Voulez-vous coucher avec moi?".');
 INSERT INTO places (id, destination_id, name, category, arrival_time, departure_time, budget, status, notes) VALUES (49, 49, 'Le vieux port', 'Landmark', '2029-07-27 10:00:00', '2029-07-27 18:00:00', 500, 'Planning', 'Vitamin Sea.');
 INSERT INTO places (id, destination_id, name, category, arrival_time, departure_time, budget, status, notes) VALUES (50, 50, 'Place de la bourse', 'Landmark', '2029-07-28 10:00:00', '2029-07-28 18:00:00', 500, 'Planning', 'Wine.');
+
+SELECT setval('trips_id_seq', (SELECT MAX(id) FROM trips));
+SELECT setval('destinations_id_seq', (SELECT MAX(id) FROM destinations));
+SELECT setval('places_id_seq', (SELECT MAX(id) FROM places));

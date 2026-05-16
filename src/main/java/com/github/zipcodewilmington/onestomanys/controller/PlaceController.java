@@ -74,6 +74,6 @@ public class PlaceController {
             return List.of();
         }
 
-        return destination.getPlaces();
+        return place.findByDestinationIdOrderByArrivalTimeAsc(id);
     }
 }

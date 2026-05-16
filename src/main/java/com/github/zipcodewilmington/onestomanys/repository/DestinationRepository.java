@@ -1,8 +1,11 @@
 package com.github.zipcodewilmington.onestomanys.repository;
 
-import com.github.zipcodewilmington.onestomanys.entity.Destination;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface  DestinationRepository extends JpaRepository<Destination, Integer>{
+import com.github.zipcodewilmington.onestomanys.entity.Destination;
 
+public interface  DestinationRepository extends JpaRepository<Destination, Integer>{
+    List<Destination> findByTripIdOrderByArrivalDateAsc(Integer tripId);
 }

@@ -27,7 +27,7 @@ public class TripController {
 
     @GetMapping
     public List<Trip> getTrips() {
-        return trip.findAll();
+        return trip.findAllByOrderByStartDateAsc();
     }
 
     @GetMapping("/{id}")
