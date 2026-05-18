@@ -93,13 +93,13 @@ function PlacesPage() {
     <form className="card p-3 mb-4 shadow-sm" onSubmit={handleCreatePlace}>
             <input
                 className="form-control mb-3"
-                placeholder="City"
+                placeholder="Name"
                 value={newPlace.name}
                 onChange={event => setNewPlace({ ...newPlace, name: event.target.value })}
             />
             <input
                 className="form-control mb-3"
-                placeholder="Country"
+                placeholder="Category"
                 value={newPlace.category}
                 onChange={event => setNewPlace({ ...newPlace, category: event.target.value })}
             />
@@ -117,7 +117,7 @@ function PlacesPage() {
             />
             <input
                 className="form-control mb-3"
-                type="date"
+                type="datetime-local"
                 value={newPlace.arrivalTime}
                 onChange={event =>
                     setNewPlace({
@@ -128,7 +128,7 @@ function PlacesPage() {
             />
             <input
                 className="form-control mb-3"
-                type="date"
+                type="datetime-local"
                 value={newPlace.departureTime}
                 onChange={event =>
                     setNewPlace({
@@ -166,40 +166,55 @@ function PlacesPage() {
     )}
             {places.map(place => (
                 <div className="card p-3 mb-3 shadow-sm" key={place.id}>
-                    <h2>
+                    <div className="d-flex justify-content-between align-items-start mb-3">
+                    <h2 className="mb-0">
                         <Link to={`/places/${place.id}`}>
                             {place.name}
                         </Link>
                     </h2>
-                    <p>Status: {place.status}</p>
-                    <p>Budget: ${place.budget}</p>
-                    <p>Start Date: {place.arrivalTime}</p>
-                    <p>End Date: {place.departureTime}</p>
-                    <p>Notes: {place.notes || ""}</p>
-                    
-                    <button
-                        className="btn btn-warning btn-sm me-2"
-                        onClick={() => {
-                            setEditingPlaceId(place.id);
-                            setEditPlace({
-                                name: place.name,
-                                category: place.category,
-                                budget: place.budget,
-                                arrivalTime: place.arrivalTime,
-                                departureTime: place.departureTime,
-                                status: place.status,
-                                notes: place.notes || ""
-                            });
-                        }}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDeletePlace(place.id)}
-                    >
-                        Delete
-                    </button>
+
+                    <div>
+                        <button
+                            className="btn btn-warning btn-sm me-2"
+                            onClick={() => {
+                                setEditingPlaceId(place.id);
+                                setEditPlace({
+                                    name: place.name || "",
+                                    category: place.category || "",
+                                    budget: place.budget || "",
+                                    arrivalTime: place.arrivalTime || "",
+                                    departureTime: place.departureTime || "",
+                                    status: place.status || "",
+                                    notes: place.notes || ""
+                                });
+                            }}
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleDeletePlace(place.id)}
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-md-6">
+                        <p><strong>Arrival Time:</strong> {place.arrivalTime?.replace("T", " ").slice(0, 16)}</p>
+                        <p><strong>Departure Time:</strong> {place.departureTime?.replace("T", " ").slice(0, 16)}</p>
+                    </div>
+
+                    <div className="col-md-6">
+                        <p><strong>Budget:</strong> ${place.budget}</p>
+                        <p><strong>Status:</strong> {place.status}</p>
+                    </div>
+                </div>
+
+                <p><strong>Category:</strong> {place.category}</p>
+                <p><strong>Notes:</strong> {place.notes || ""}</p>
                     {editingPlaceId === place.id && (
                         <form className="card p-3 mt-3">
                             <input
@@ -249,7 +264,7 @@ function PlacesPage() {
 
                             <input
                                 className="form-control mb-2"
-                                type = "date"
+                                type = "datetime-local"
                                 value={editPlace.arrivalTime}
                                 onChange={event =>
                                     setEditPlace({
@@ -261,7 +276,7 @@ function PlacesPage() {
 
                             <input
                                 className="form-control mb-2"
-                                type = "date"
+                                type = "datetime-local"
                                 value={editPlace.departureTime}
                                 onChange={event =>
                                     setEditPlace({

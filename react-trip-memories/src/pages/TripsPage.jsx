@@ -146,39 +146,53 @@ function TripsPage() {
     )}
             {trips.map(trip => (
                 <div className="card p-3 mb-3 shadow-sm" key={trip.id}>
-                    <h2>
+                    <div className="d-flex justify-content-between align-items-start mb-3">
+                    <h2 className="mb-0">
                         <Link to={`/trips/${trip.id}`}>
                             {trip.title}
                         </Link>
                     </h2>
-                    <p>Status: {trip.status}</p>
-                    <p>Budget: ${trip.budget}</p>
-                    <p>Start Date: {trip.startDate}</p>
-                    <p>End Date: {trip.endDate}</p>
-                    <p>Notes: {trip.notes || ""}</p>
-                    
-                    <button
-                        className="btn btn-warning btn-sm me-2"
-                        onClick={() => {
-                            setEditingTripId(trip.id);
-                            setEditTrip({
-                                title: trip.title,
-                                budget: trip.budget,
-                                startDate: trip.startDate,
-                                endDate: trip.endDate,
-                                status: trip.status,
-                                notes: trip.notes || ""
-                            });
-                        }}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDeleteTrip(trip.id)}
-                    >
-                        Delete
-                    </button>
+
+                    <div>
+                        <button
+                            className="btn btn-warning btn-sm me-2"
+                            onClick={() => {
+                                setEditingTripId(trip.id);
+                                setEditTrip({
+                                    title: trip.title || "",
+                                    budget: trip.budget || "",
+                                    startDate: trip.startDate || "",
+                                    endDate: trip.endDate || "",
+                                    status: trip.status || "",
+                                    notes: trip.notes || ""
+                                });
+                            }}
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleDeleteTrip(trip.id)}
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-md-6">
+                        <p><strong>Start Date:</strong> {trip.startDate}</p>
+                        <p><strong>End Date:</strong> {trip.endDate}</p>
+                    </div>
+
+                    <div className="col-md-6">
+                        <p><strong>Budget:</strong> ${trip.budget}</p>
+                        <p><strong>Status:</strong> {trip.status}</p>
+                    </div>
+                </div>
+
+                <p><strong>Notes:</strong> {trip.notes || ""}</p>
                     {editingTripId === trip.id && (
                         <form className="card p-3 mt-3">
                             <input
