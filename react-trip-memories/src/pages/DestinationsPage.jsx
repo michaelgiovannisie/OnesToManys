@@ -65,7 +65,12 @@ function DestinationsPage() {
     }
 
     function handleUpdateDestination() {
-        updateDestination(editingDestinationId, editDestination).then(() => {
+        updateDestination(editingDestinationId, {
+            ...editDestination,
+            trip: {
+                id: id
+            }
+        }).then(() => {
             getDestinationsByTripId(id).then(data => {
                 setDestinations(data);
             });

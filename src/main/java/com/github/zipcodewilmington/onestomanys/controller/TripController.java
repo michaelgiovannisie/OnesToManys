@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.zipcodewilmington.onestomanys.entity.Destination;
 import com.github.zipcodewilmington.onestomanys.entity.Trip;
+import com.github.zipcodewilmington.onestomanys.repository.DestinationRepository;
 import com.github.zipcodewilmington.onestomanys.repository.TripRepository;
 
 @RestController
@@ -24,6 +25,9 @@ import com.github.zipcodewilmington.onestomanys.repository.TripRepository;
 public class TripController {
     @Autowired
     private TripRepository trip;
+
+    @Autowired
+    private DestinationRepository destinationRepository;
 
     @GetMapping
     public List<Trip> getTrips() {
@@ -37,11 +41,7 @@ public class TripController {
 
     @GetMapping("/{id}/destinations")
     public List<Destination> getTrip(@PathVariable Integer id) {
-        Trip foundTrip = trip.findById(id).orElse(null);
-        if (foundTrip == null) {
-            return List.of();
-        }
-        return foundTrip.getDestinations();
+        return destinationRepository.findByTripIdOrderByArrivalDateAsc(id);
     }
 
     @PostMapping
